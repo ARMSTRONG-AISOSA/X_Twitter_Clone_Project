@@ -16,14 +16,14 @@ function App() {
 
   return (
     <div className="container-fluid">
-      <div className="row">
+      <div className="row vh-100">
         {/* Sidebar (hidden on <md) */}
-        <aside className="col-md-3 col-lg-2 d-none d-md-block border-end p-0">
+        <aside className="col-md-3 col-lg-2 d-none d-md-block border-end p-0 top-0 position-sticky overflow-auto">
           <Sidebar />
         </aside>
 
         {/* Feed (full width on mobile, centered on desktop) */}
-        <main className="col-12 col-md-9 col-lg-6 border-end p-0">
+        <main className="col-12 col-md-9 col-lg-6 border-end p-0 vh-100 overflow-auto">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/explore" element={<Explore />} />
@@ -36,7 +36,7 @@ function App() {
         </main>
 
         {/* Rightbar (hidden on <lg) */}
-        <aside className="col-lg-4 d-none d-lg-block p-0">
+        <aside className="col-lg-4 d-none d-lg-block p-0 position-sticky top-0 vh-100 overflow-auto">
           <Rightbar />
         </aside>
       </div>

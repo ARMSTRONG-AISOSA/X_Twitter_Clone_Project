@@ -23,17 +23,6 @@ const NavbarMobile = () => {
         </Link>
       ))}
     </nav>
-
-    // <ul className="nav nav-pills flex-column w-100">
-    //     {menuItems.map((item, idx) => (
-    //       <li key={idx} className="nav-item">
-    //         <Link to={item.path} className="nav-link d-flex align-items-center mb-2 fs-5">
-    //           {item.icon}
-    //           <span className="d-none d-xl-inline">{item.label}</span>
-    //         </Link>
-    //       </li>
-    //     ))}
-    //   </ul>
   )
 }
 
