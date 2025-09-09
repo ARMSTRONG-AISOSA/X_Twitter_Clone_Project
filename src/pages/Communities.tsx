@@ -19,6 +19,7 @@ const Communities = () => {
       name: newName,
       description: newDesc || "A new community",
       banner: newBanner || "https://picsum.photos/600/200",
+      rules: [] //unused
     });
     setNewName("");
     setNewDesc("");

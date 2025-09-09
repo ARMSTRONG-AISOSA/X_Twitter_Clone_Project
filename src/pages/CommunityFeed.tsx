@@ -73,12 +73,60 @@ const CommunityFeed = () => {
             Leave
           </button>
         ) : (
-          <button
-            className="btn btn-outline-primary btn-sm rounded-pill"
-            onClick={() => joinCommunity(community.id)}
-          >
-            Join
-          </button>
+          <>
+            <button
+              className="btn btn-outline-primary btn-sm rounded-pill"
+              data-bs-toggle="modal"
+              data-bs-target="#rulesModal"
+            >
+              Join
+            </button>
+
+            {/* Rules Modal */}
+            <div
+              className="modal fade"
+              id="rulesModal"
+              tabIndex={-1}
+              aria-hidden="true"
+            >
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title">Community Rules</h5>
+                    <button
+                      type="button"
+                      className="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div className="modal-body">
+                    <p>✅ Be respectful to all members</p>
+                    <p>✅ No spam or self-promotion</p>
+                    <p>✅ Keep discussions relevant to {community.name}</p>
+                    <p>✅ Follow Twitter’s community guidelines</p>
+                  </div>
+                  <div className="modal-footer">
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      data-bs-dismiss="modal"
+                      onClick={() => joinCommunity(community.id)}
+                    >
+                      Agree & Join
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
         )}
       </div>
 
