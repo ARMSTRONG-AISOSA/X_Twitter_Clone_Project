@@ -1,7 +1,10 @@
-import { FaHome, FaHashtag, FaBell, FaEnvelope, FaBookmark, FaUser, FaEllipsisH, FaTwitter } from "react-icons/fa"
-import { Link } from "react-router-dom"
+import { FaHome, FaHashtag, FaBell, FaEnvelope, FaBookmark, FaUser, FaEllipsisH, FaTwitter } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { useUser } from "../context/UserContext";
 
 const Sidebar = () => {
+
+  const { user } = useUser(); // get user
 
   // Define menu items
   const menuItems = [
@@ -10,6 +13,7 @@ const Sidebar = () => {
     { label: "Notifications", icon: <FaBell className="me-3 fs-4" />, path: "/notifications" },
     { label: "Messages", icon: <FaEnvelope className="me-3 fs-4" />, path: "/messages" },
     { label: "Bookmarks", icon: <FaBookmark className="me-3 fs-4" />, path: "/bookmarks" },
+    { label: "Communities", icon: <FaUser className="me-3 fs-4" />, path: "/communities" },
     { label: "Profile", icon: <FaUser className="me-3 fs-4" />, path: "/profile" },
     { label: "More", icon: <FaEllipsisH className="me-3 fs-4" />, path: "/more" },
   ]
@@ -52,8 +56,8 @@ const Sidebar = () => {
           height={40}
         />
         <div className="d-none d-xl-flex flex-column">
-          <span className="fw-bold">John Doe</span>
-          <span className="text-muted">@johndoe</span>
+          <span className="fw-bold">{user.name}</span>
+          <span className="text-muted">{user.handle}</span>
         </div>
         <FaEllipsisH className="ms-auto fs-5" />
       </div>

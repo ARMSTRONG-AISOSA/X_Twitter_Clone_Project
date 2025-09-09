@@ -1,14 +1,32 @@
-import { useState } from "react"
+import { useState } from "react";
+import { usePosts } from "../context/PostContext";
+import { useUser } from "../context/UserContext";
 
 const TweetComposer = () => {
 
     const [tweet, setTweet] = useState("");
+    const { addPost, posts } = usePosts(); // get post from context
+    const { user } = useUser(); // get user from context
 
     const handlePost = () => {
-        if (!tweet.trim()) return
-        console.log("New Tweet:", tweet) // Later, we can push to posts[]
-        setTweet("")
-    }
+        if (!tweet.trim()) return;
+
+        // Post & User info
+        const newPost = {
+            id: posts.length + 1,
+            user, // passed in user info
+            content: tweet,
+            timestamp: "Just now",
+            likes: 0,
+            retweets: 0,
+            comments: 0,
+        };
+
+        addPost(newPost);
+        // console.log("New Tweet:", tweet); // log tweet out
+        // console.log("Post details:", newPost); // log post out
+        setTweet("");
+    };
 
     return (
         <div className="border-bottom p-3 d-flex">

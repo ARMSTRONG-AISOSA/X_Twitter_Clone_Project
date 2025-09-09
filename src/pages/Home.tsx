@@ -1,8 +1,11 @@
-import { posts } from "../data/posts"
-import TweetCard from "../components/TweetCard"
-import TweetComposer from "../components/TweetComposer"
+import TweetCard from "../components/TweetCard";
+import TweetComposer from "../components/TweetComposer";
+import { usePosts } from "../context/PostContext";
 
 const Home = () => {
+
+  const { posts } = usePosts(); // from context
+
   return (
     <div className="h-100 overflow-auto">
       {/* Top Feed Header */}

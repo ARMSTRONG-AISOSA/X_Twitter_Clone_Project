@@ -1,15 +1,17 @@
-import { Routes, Route } from "react-router-dom"
-import Sidebar from "./components/Sidebar"
-import Rightbar from "./components/Rightbar"
-import NavbarMobile from "./components/NavbarMobile"
+import { Routes, Route } from "react-router-dom";
+import Sidebar from "./components/Sidebar";
+import Rightbar from "./components/Rightbar";
+import NavbarMobile from "./components/NavbarMobile";
 
-import Home from "./pages/Home"
-import Explore from "./pages/Explore"
-import Notifications from "./pages/Notifications"
-import Messages from "./pages/Messages"
-import Bookmarks from "./pages/Bookmarks"
-import Profile from "./pages/Profile"
-import More from "./pages/More"
+import Home from "./pages/Home";
+import Explore from "./pages/Explore";
+import Notifications from "./pages/Notifications";
+import Messages from "./pages/Messages";
+import Bookmarks from "./pages/Bookmarks";
+import Profile from "./pages/Profile";
+import More from "./pages/More";
+import Communities from "./pages/Communities";
+import CommunityFeed from "./pages/CommunityFeed";
 
 function App() {
 
@@ -30,6 +32,8 @@ function App() {
             <Route path="/notifications" element={<Notifications />} />
             <Route path="/messages" element={<Messages />} />
             <Route path="/bookmarks" element={<Bookmarks />} />
+            <Route path="/communities" element={<Communities />} />
+            <Route path="/communities/:id" element={<CommunityFeed />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/more" element={<More />} />
           </Routes>
