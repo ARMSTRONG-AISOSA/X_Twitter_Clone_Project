@@ -6,9 +6,15 @@ import { useUser } from "../context/UserContext";
 const CommunityFeed = () => {
 
   const { user } = useUser(); // get user from context
-
   const { id } = useParams();
-  const { communities, addCommunityPost } = useCommunities();
+  const {
+    communities,
+    addCommunityPost,
+    joinedCommunities,
+    joinCommunity,
+    leaveCommunity,
+  } = useCommunities();
+
   const community = communities.find((c) => c.id === Number(id)); // find cummunity matching :"id"
 
   const [newPost, setNewPost] = useState("");
@@ -33,6 +39,8 @@ const CommunityFeed = () => {
     setNewPost("");
   };
 
+  const isJoined = joinedCommunities.includes(community.id);
+
   return (
     <div className="h-100 overflow-auto">
       {/* Header */}
@@ -50,33 +58,52 @@ const CommunityFeed = () => {
         className="img-fluid w-100"
       />
 
-      {/* Description */}
-      <div className="p-3 border-bottom">
-        <h5>{community.name}</h5>
-        <p className="text-muted">{community.description}</p>
-        <p className="small text-muted">{community.members} members</p>
+      {/* Description + Join/Leave */}
+      <div className="p-3 border-bottom d-flex justify-content-between align-items-center">
+        <div>
+          <h5>{community.name}</h5>
+          <p className="text-muted mb-1">{community.description}</p>
+          <p className="small text-muted">{community.members} members</p>
+        </div>
+        {isJoined ? (
+          <button
+            className="btn btn-outline-danger btn-sm rounded-pill"
+            onClick={() => leaveCommunity(community.id)}
+          >
+            Leave
+          </button>
+        ) : (
+          <button
+            className="btn btn-outline-primary btn-sm rounded-pill"
+            onClick={() => joinCommunity(community.id)}
+          >
+            Join
+          </button>
+        )}
       </div>
 
       {/* Post Composer */}
-      <div className="p-3 border-bottom d-flex">
-        <img
-          src="https://i.pravatar.cc/150?img=21"
-          alt="me"
-          className="rounded-circle me-2"
-          width={40}
-          height={40}
-        />
-        <input
-          type="text"
-          className="form-control rounded-pill"
-          placeholder="Write something..."
-          value={newPost}
-          onChange={(e) => setNewPost(e.target.value)}
-        />
-        <button className="btn btn-primary ms-2" onClick={handlePost}>
-          Post
-        </button>
-      </div>
+      {isJoined && (
+        <div className="p-3 border-bottom d-flex">
+          <img
+            src={user.avatar}
+            alt={user.name}
+            className="rounded-circle me-2"
+            width={40}
+            height={40}
+          />
+          <input
+            type="text"
+            className="form-control rounded-pill"
+            placeholder="Write something..."
+            value={newPost}
+            onChange={(e) => setNewPost(e.target.value)}
+          />
+          <button className="btn btn-primary ms-2" onClick={handlePost}>
+            Post
+          </button>
+        </div>
+      )}
 
       {/* Posts */}
       {community.posts.map((post) => (

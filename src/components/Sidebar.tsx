@@ -1,6 +1,7 @@
 import { FaHome, FaHashtag, FaBell, FaEnvelope, FaBookmark, FaUser, FaEllipsisH, FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useUser } from "../context/UserContext";
+import { IoIosPeople } from "react-icons/io";
 
 const Sidebar = () => {
 
@@ -13,7 +14,7 @@ const Sidebar = () => {
     { label: "Notifications", icon: <FaBell className="me-3 fs-4" />, path: "/notifications" },
     { label: "Messages", icon: <FaEnvelope className="me-3 fs-4" />, path: "/messages" },
     { label: "Bookmarks", icon: <FaBookmark className="me-3 fs-4" />, path: "/bookmarks" },
-    { label: "Communities", icon: <FaUser className="me-3 fs-4" />, path: "/communities" },
+    { label: "Communities", icon: <IoIosPeople className="me-3 fs-4" />, path: "/communities" },
     { label: "Profile", icon: <FaUser className="me-3 fs-4" />, path: "/profile" },
     { label: "More", icon: <FaEllipsisH className="me-3 fs-4" />, path: "/more" },
   ]
@@ -49,8 +50,8 @@ const Sidebar = () => {
       {/* Profile Section */}
       <div className="d-flex align-items-center mt-auto p-2 rounded hover-bg w-100">
         <img
-          src="https://i.pravatar.cc/120"
-          alt="profile"
+          src={user.avatar}
+          alt={user.name}
           className="rounded-circle me-2"
           width={40}
           height={40}

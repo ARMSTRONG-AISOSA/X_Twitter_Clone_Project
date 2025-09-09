@@ -3,7 +3,7 @@ import { useCommunities } from "../context/CommunityContext";
 import { useState } from "react";
 
 const Communities = () => {
-  const { communities, joinedCommunities, joinCommunity, leaveCommunity, addCommunity } = useCommunities();
+  const { communities, joinedCommunities, addCommunity } = useCommunities();
   const [showJoined, setShowJoined] = useState(false);
   const [newName, setNewName] = useState("");
   const [newDesc, setNewDesc] = useState("");
@@ -75,21 +75,7 @@ const Communities = () => {
             <p className="text-muted">{community.description}</p>
             <p className="small text-muted">{community.members} members</p>
 
-            {joinedCommunities.includes(community.id) ? (
-              <button
-                className="btn btn-outline-danger btn-sm rounded-pill"
-                onClick={() => leaveCommunity(community.id)}
-              >
-                Leave
-              </button>
-            ) : (
-              <button
-                className="btn btn-outline-primary btn-sm rounded-pill"
-                onClick={() => joinCommunity(community.id)}
-              >
-                Join
-              </button>
-            )}
+
           </div>
         ))
       ) : (
